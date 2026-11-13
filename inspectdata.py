@@ -83,3 +83,49 @@ movies = pd.read_csv(filePath)
 # RESOLVING DUPLICATES
 # print(movies.duplicated().sum())
 print(movies["id"].duplicated().sum())
+
+
+
+# After FUNCTION COMPOSITION, the dataset "horror_movies.csv" is to be cleaned
+# The 'clean_dataset' and 'validate_dataset' functions are used from the 'dataCleaner.py' file located in the 'modules' folder
+from modules.dataCleaner import clean_dataset, validate_dataset
+
+# cleaned = clean_dataset(movies)
+# validate_dataset(cleaned)
+
+# output_Path = Path("dataset")/"cleaned_movies.csv"
+
+# cleaned.to_csv(output_Path, index=False)
+# print("\nCleaned dataset saved successfully!")
+ 
+
+# # BEFORE & AFTER CLEANING MISSING VALUES
+# print("Original missing overviews: ", movies["overview"].isna().sum())
+# print("Cleaned missing overviews: ", cleaned["overview"].isna().sum())
+
+# print("Original missing tagline: ", movies["tagline"].isna().sum())
+# print("Cleaned missing tagline: ", cleaned["tagline"].isna().sum())
+
+# print("Missing posters: ", cleaned["poster_path"].isna().sum())
+
+
+
+
+# # STANDARDIZING TEXT
+# standardized_movies = standardize_text(cleaned)
+# print(standardized_movies[["title", "original_title", "original_language", "genre_names"]].head())
+
+
+
+# # EXTRACTING DATE & YEAR
+# date_processed_movies = process_date(standardized_movies)
+# print(date_processed_movies[
+#     ["title", "release_date", "release_year"]
+# ].head())
+
+# print("\n---RELEASE YEAR DATA TYPE---")
+# print(date_processed_movies["release_year"].dtype)
+
+# print("\n---INVALID OR MISSING DATES---")
+# print(date_processed_movies["release_date"].isna().sum())
+
