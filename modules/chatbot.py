@@ -39,7 +39,7 @@ def initialize_chatbot():
     
     prepared_movies = prepare_movie_text(movies)
     
-    tfidf, tfidf_matrix = build_tfidf_matrix(
+    feature_matrices = build_tfidf_matrix(
         prepared_movies
     )
     
@@ -47,20 +47,18 @@ def initialize_chatbot():
         "movies": movies,
         "prepared_movies": prepared_movies,
         "movie_titles": movie_titles,
-        "tfidf": tfidf,
-        "tfidf_matrix": tfidf_matrix
+        "feature_matrices": feature_matrices
     }
     
     return chatbot_data
 
-
 def get_recommendations(chatbot_data, movie_title, limit = 5):
     movies = chatbot_data["movies"]
-    tfidf_matrix = chatbot_data["tfidf_matrix"]
+    feature_matrices = chatbot_data["feature_matrices"]
     
     recommendations = recommend_movies(
         movies, 
-        tfidf_matrix,
+        feature_matrices,
         movie_title,
         limit
     )
@@ -74,14 +72,14 @@ def format_movie_context(movies):
     for _, movie in movies.iterrows():
 
         context += f"""
-Movie: {movie.get('title', 'Unknown')}
-Year: {movie.get('release_year', 'Unknown')}
-Genres: {movie.get('genre_names', 'Unknown')}
-Director: {movie.get('director', 'Unknown')}
-Cast: {movie.get('top_5_cast', 'Unknown')}
-Overview: {movie.get('overview', 'Unknown')}
-Rating: {movie.get('vote_average', 'Unknown')}
-"""
+    Movie: {movie.get('title', 'Unknown')}
+    Year: {movie.get('release_year', 'Unknown')}
+    Genres: {movie.get('genre_names', 'Unknown')}
+    Director: {movie.get('director', 'Unknown')}
+    Cast: {movie.get('top_5_cast', 'Unknown')}
+    Overview: {movie.get('overview', 'Unknown')}
+    Rating: {movie.get('vote_average', 'Unknown')}
+    """
 
     return context
 
@@ -386,18 +384,29 @@ def chat(chatbot_data, conversation, user_message):
             recommendations
         )
 
-        movie_context = format_movie_context(recommendations)
-
-        question = (
-            f"{user_message}\n\n"
-            f"Reference movie: {movie_title}.\n"
-            "Recommend only movies from the supplied movie context."
+        response = format_recommendation_response(
+            movie_title,
+            recommendations
         )
-
-        return generate_contextual_response(
-            question,
-            movie_context
+        
+        add_message(
+            conversation, 
+            "assistant",
+            response
         )
+        
+        return response
+
+        # question = (
+        #     f"{user_message}\n\n"
+        #     f"Reference movie: {movie_title}.\n"
+        #     "Recommend only movies from the supplied movie context."
+        # )
+
+        # return generate_contextual_response(
+        #     question,
+        #     movie_context
+        # )
 
     # --------------------------------------------------
     # 8. GENRE-BASED RECOMMENDATIONS
@@ -705,6 +714,25 @@ def chat(chatbot_data, conversation, user_message):
         add_message(conversation, "assistant", response)
 
         return response
+
+def format_recommendation_response(movie_title, recommendations):
+    response = (
+        f"Here are five movies similar to {movie_title}:\n\n"
+    )
+    
+    for rank, (_, movie) in enumerate(
+        recommendations.iterrows(), start=1
+    ):
+        response += (
+            f"{rank}. {movie['title']}\n"
+            f"   Year: {movie.get('release_year', 'Unknown')}\n"
+            f"   Genres: {movie.get('genre_names', 'Unknown')}\n"
+            f"   Director: {movie.get('director', 'Unknown')}\n"
+            f"   Rating: {movie.get('vote_average', 'Unknown')}\n"
+            f"   Similarity: "
+            f"{movie.get('similarity_score', 0):.4f}\n\n"
+        )
+    return response
 
 def remember_shown_movies(conversation, movies):
 

@@ -1,6 +1,8 @@
 def create_conversation():
     conversation = {
-        "messages": []
+        "messages": [],
+        "active_movie": None,
+        "last_shown_movies": []
     }
     return conversation
 

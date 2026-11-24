@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 
 def load_movies():
-    f = Path("dataset")/"cleaned_movies.csv"
+    f = Path("dataset")/"enriched_movies.csv"
     
     if not f.is_file():
         raise FileNotFoundError("Data absent.")
