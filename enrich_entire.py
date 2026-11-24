@@ -23,7 +23,7 @@ OUTPUT_PATH = Path("dataset") / "enriched_movies.csv"
 CHECKPOINT_INTERVAL = 100
 REQUEST_DELAY = 0.25
 MAX_RETRIES = 5
-BATCH_SIZE = 500
+BATCH_SIZE = 5000
 
 URL = "https://api.themoviedb.org/3/movie/{}/credits"
 
@@ -31,7 +31,6 @@ session = requests.Session()
 
 
 # 2. FETCH CREDITS FOR ONE MOVIE
-
 def fetch_credits(movie_id):
 
     for attempt in range(MAX_RETRIES):
