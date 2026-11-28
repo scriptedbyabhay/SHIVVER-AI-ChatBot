@@ -1,0 +1,441 @@
+/* ==========================================
+   SHIVVER AI — COMPLETE FRONTEND STYLING
+   Theme: Cinematic Dark / Horror
+========================================== */
+
+/* 1. GLOBAL VARIABLES */
+
+:root {
+    --bg-primary: #101010;
+    --bg-sidebar: #141414;
+    --bg-secondary: #1b1b1b;
+    --bg-message: #202020;
+
+    --accent-red: #e50914;
+    --accent-hover: #b80710;
+
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --text-muted: #777777;
+
+    --border-color: #292929;
+
+    --font-main: Arial, Helvetica, sans-serif;
+}
+
+
+/* 2. GLOBAL RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 15px;
+}
+
+
+/* 3. MAIN APPLICATION LAYOUT */
+
+.container-fluid {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding: 0 !important;
+    margin: 0;
+    overflow: hidden;
+}
+
+
+/* 4. SIDEBAR */
+
+#sidebar {
+    width: 280px;
+    min-width: 280px;
+    height: 100vh;
+
+    background-color: var(--bg-sidebar);
+
+    border-right: 1px solid var(--border-color);
+
+    padding: 30px 22px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;
+}
+
+/* Sidebar branding */
+
+#sidebar h2 {
+    color: var(--text-primary);
+
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    margin-bottom: 35px;
+}
+
+/* New conversation button */
+
+#new-chat {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    background-color: var(--accent-red);
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-align: left;
+
+    transition: 0.2s ease;
+}
+
+#new-chat:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+/* Conversation history */
+
+#conversation-history {
+    margin-top: 35px;
+}
+
+#conversation-history h5 {
+    color: var(--text-muted);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+
+    margin-bottom: 18px;
+}
+
+
+/* 5. MAIN CHAT CONTAINER */
+
+#chat-container {
+    flex: 1;
+    min-width: 0;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+
+    background-color: var(--bg-primary);
+}
+
+
+/* 6. CHAT HEADER */
+
+#chat-header {
+    width: 100%;
+
+    padding: 28px 45px;
+
+    border-bottom: 1px solid var(--border-color);
+
+    background-color: var(--bg-primary);
+}
+
+#chat-header h3 {
+    color: var(--text-primary);
+
+    font-size: 23px;
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+#chat-header p {
+    color: var(--text-secondary);
+
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+
+/* 7. CHAT MESSAGES AREA */
+
+#chat-messages {
+    flex: 1;
+
+    width: 100%;
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 45px 55px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 22px;
+
+    overflow-y: auto;
+}
+
+/* Assistant message */
+
+.assistant-message {
+    max-width: 75%;
+
+    background-color: var(--bg-message);
+
+    border: 1px solid var(--border-color);
+    border-radius: 4px 16px 16px 16px;
+
+    padding: 17px 22px;
+}
+
+.assistant-message p {
+    color: var(--text-primary);
+
+    font-size: 15px;
+    line-height: 1.7;
+
+    margin: 0;
+}
+
+/* User message - ready for future messages */
+
+.user-message {
+    max-width: 75%;
+
+    align-self: flex-end;
+
+    background-color: var(--accent-red);
+
+    border-radius: 16px 4px 16px 16px;
+
+    padding: 15px 22px;
+}
+
+.user-message p {
+    color: white;
+
+    font-size: 15px;
+    line-height: 1.7;
+
+    margin: 0;
+}
+
+
+/* 8. MESSAGE INPUT AREA */
+
+#chat-input-area {
+    width: 100%;
+
+    padding: 22px 45px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    background-color: var(--bg-primary);
+
+    border-top: 1px solid var(--border-color);
+}
+
+/* Message input */
+
+#user-message {
+    flex: 1;
+    max-width: 850px;
+
+    height: 55px;
+
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+
+    padding: 0 25px;
+
+    color: var(--text-primary);
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: border-color 0.2s ease;
+}
+
+#user-message::placeholder {
+    color: var(--text-muted);
+}
+
+#user-message:focus {
+    border-color: var(--accent-red);
+}
+
+/* Send button */
+
+#send-button {
+    height: 52px;
+    min-width: 90px;
+
+    background-color: var(--accent-red);
+    color: white;
+
+    border: none;
+    border-radius: 28px;
+
+    padding: 0 23px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+#send-button:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+
+/* 9. SCROLLBARS */
+
+#chat-messages::-webkit-scrollbar,
+#sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+#chat-messages::-webkit-scrollbar-track,
+#sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#chat-messages::-webkit-scrollbar-thumb,
+#sidebar::-webkit-scrollbar-thumb {
+    background-color: #383838;
+    border-radius: 10px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb:hover,
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-red);
+}
+
+
+/* 10. RESPONSIVE DESIGN — TABLETS */
+
+@media (max-width: 768px) {
+
+    #sidebar {
+        width: 220px;
+        min-width: 220px;
+        padding: 25px 15px;
+    }
+
+    #sidebar h2 {
+        font-size: 21px;
+    }
+
+    #chat-header {
+        padding: 24px;
+    }
+
+    #chat-messages {
+        padding: 30px 25px;
+    }
+
+    #chat-input-area {
+        padding: 18px 20px;
+    }
+
+    .assistant-message,
+    .user-message {
+        max-width: 90%;
+    }
+}
+
+
+/* 11. RESPONSIVE DESIGN — MOBILE */
+
+@media (max-width: 576px) {
+
+    #sidebar {
+        display: none;
+    }
+
+    #chat-container {
+        width: 100%;
+    }
+
+    #chat-header {
+        padding: 22px 18px;
+    }
+
+    #chat-header h3 {
+        font-size: 19px;
+    }
+
+    #chat-header p {
+        font-size: 12px;
+    }
+
+    #chat-messages {
+        padding: 25px 17px;
+    }
+
+    .assistant-message,
+    .user-message {
+        max-width: 95%;
+        padding: 13px 16px;
+    }
+
+    #chat-input-area {
+        padding: 15px 12px;
+        gap: 8px;
+    }
+
+    #user-message {
+        height: 48px;
+        padding: 0 16px;
+        font-size: 12px;
+    }
+
+    #send-button {
+        height: 46px;
+        min-width: 65px;
+        padding: 0 15px;
+        font-size: 12px;
+    }
+}
+
+
+/* 12. TEXT SELECTION */
+
+::selection {
+    background-color: var(--accent-red);
+    color: white;
+}

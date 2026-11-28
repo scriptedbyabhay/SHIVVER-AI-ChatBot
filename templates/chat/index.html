@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SHIVVER AI | Horror Movie Discovery</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Custom CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+    <!-- Main Application Container -->
+    <div class="container-fluid">
+
+        <!-- Sidebar -->
+        <aside id="sidebar">
+
+            <h2>SHIVVER AI</h2>
+
+            <button id="new-chat">
+                + New Conversation
+            </button>
+
+            <div id="conversation-history">
+                <h5>Recent Conversations</h5>
+            </div>
+
+        </aside>
+
+
+        <!-- Main Chat Section -->
+        <main id="chat-container">
+
+            <!-- Header -->
+            <header id="chat-header">
+                <h3>Welcome to SHIVVER</h3>
+                <p>Your personal horror movie discovery assistant.</p>
+            </header>
+
+
+            <!-- Chat Messages -->
+            <section id="chat-messages">
+
+                <div class="assistant-message">
+                    <p>
+                        Welcome to SHIVVER AI.
+                        What kind of horror are you in the mood for?
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- User Input -->
+            <footer id="chat-input-area">
+
+                <input
+                    type="text"
+                    id="user-message"
+                    placeholder="Ask SHIVVER anything about horror movies..."
+                >
+
+                <button id="send-button">
+                    Send
+                </button>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/chat.js' %}"></script>
+</body>
+</html>
